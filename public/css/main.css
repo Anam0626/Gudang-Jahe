@@ -1,0 +1,166 @@
+:root {
+    --shadow-image: 0 0 0px rgba(215, 185, 138, 1);
+    --shadow-image2: 0 0 40px rgba(215, 185, 138, 1);
+}
+
+@keyframes gambar {
+    0% {
+        filter: drop-shadow(var(--shadow-image));
+    }
+    25% {
+        filter: drop-shadow(var(--shadow-image2));
+    }
+    50% {
+        filter: drop-shadow(var(--shadow-image));
+    }
+    75% {
+        filter: drop-shadow(var(--shadow-image2));
+    }
+    100% {
+        filter: drop-shadow(var(--shadow-image));
+    }
+}
+
+body {
+    background-color: black;
+    font-family: "Montserrat", sans-serif;
+}
+
+.home {
+    margin-top: 100px;
+}
+
+.home img {
+    animation-name: gambar;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: alternate;
+}
+
+.about {
+    margin-top: 150px;
+}
+
+.about .right .image {
+    padding: 10px;
+    rotate: -5deg;
+}
+.about .right .images {
+    padding: 10px;
+    rotate: 5deg;
+}
+
+.about .right img {
+    background: linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(215, 189, 148, 1) 100%
+    );
+    border: 2px solid #d7bd94;
+    border-radius: 1.5rem;
+    width: 200px;
+}
+
+.product {
+    margin-top: 100px;
+}
+
+.product img {
+    width: 180px;
+}
+
+.product .col {
+    background: linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(215, 189, 148, 1) 100%
+    );
+    border: 2px solid #d7bd94;
+    border-radius: 1.5rem;
+}
+
+.product .item img {
+    width: 30px;
+    height: 30px;
+}
+
+.testimoni {
+    margin-top: 100px;
+}
+
+.card {
+    cursor: pointer;
+    background-color: #d7bd94;
+}
+.hd {
+    font-size: 25px;
+    font-weight: 550;
+}
+.card.hover,
+.card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.img {
+    margin-bottom: 35px;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+.card-title {
+    font-weight: 600;
+}
+button.focus,
+button:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
+.ft {
+    margin-top: 25px;
+}
+.chk {
+    margin-bottom: 5px;
+}
+.rck {
+    margin-top: 20px;
+    padding-bottom: 15px;
+}
+
+.contact {
+    margin-top: 100px;
+}
+
+.contact .right {
+    margin-top: 100px;
+}
+
+.contact .right img {
+    width: 20px;
+}
+
+.contact .left img {
+    rotate: 180deg;
+    animation-name: gambar;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: alternate;
+}
+
+.contact .right p {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+footer h6 {
+    color: white;
+    padding-bottom: 20px;
+}
+
+footer p {
+    color: grey;
+}
+
+footer .sosmed img {
+    width: 20px;
+    margin-right: 10px;
+}
