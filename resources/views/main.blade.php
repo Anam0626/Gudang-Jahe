@@ -40,28 +40,28 @@
                 <img src="{{asset('images/v50_56.png')}}" alt="">
                 <div class="item d-flex">
                     <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><img src="{{asset('images/shopping-bag.png')}}" alt=""></a>
+                    <a href=""><i class="fa fa-shopping-bag"></i></a>
                 </div>
             </div>
             <div class="col col-md-auto">
                 <img src="{{asset('images/v31_19.png')}}" alt="">
                 <div class="item d-flex">
                     <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><img src="{{asset('images/shopping-bag.png')}}" alt=""></a>
+                    <a href=""><i class="fa fa-shopping-bag"></i></a>
                 </div>
             </div>
             <div class="col col-md-auto">
                 <img src="{{asset('images/v31_20.png')}}" alt="">
                 <div class="item d-flex">
                     <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><img src="{{asset('images/shopping-bag.png')}}" alt=""></a>
+                    <a href=""><i class="fa fa-shopping-bag"></i></a>
                 </div>
             </div>
             <div class="col col-md-auto">
                 <img src="{{asset('images/v31_20.png')}}" alt="">
                 <div class="item d-flex">
                     <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><img src="{{asset('images/shopping-bag.png')}}" alt=""></a>
+                    <a href=""><i class="fa fa-shopping-bag"></i></a>
                 </div>
             </div>
         </div>
