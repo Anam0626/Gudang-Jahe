@@ -18,6 +18,9 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
     return view('main');
 });
+Route::get('/register', function () {
+    return view('register');
+});
 
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'index');
