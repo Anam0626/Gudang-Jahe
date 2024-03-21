@@ -35,8 +35,8 @@
                 </ul>
             </div>
             <div class="icon d-flex gap-5">
-                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                <a href="/login"><i class="fa fa-user"></i></a>
+                <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
+                <a href="{{route('login')}}"><i class="fa fa-user"></i></a>
             </div>
             <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

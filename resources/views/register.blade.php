@@ -38,7 +38,7 @@
             <button class="btn mt-3 text-black">Register</button>
         </form>
         <div class="text-center fs-6">
-            <span>Already have account?</span><a href="/login"> Login</a>
+            <span>Already have account?</span><a href="{{route('login')}}"> Login</a>
         </div>
         <div class="form-group col-lg-12 mx-auto d-flex align-items-center justify-content-center mt-4 mb-2">
             <div class="border-bottom border-dark w-25 ml-5"></div>

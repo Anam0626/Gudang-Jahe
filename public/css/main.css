@@ -332,6 +332,37 @@ button:focus {
     opacity: 0.5;
 }
 
+.detail_produk img {
+    width: 400px;
+    animation-name: gambar;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: alternate;
+}
+
+.detail_produk h1 {
+    color: #d7bd94;
+    text-transform: uppercase;
+}
+
+.detail_produk p {
+    margin-top: 100px;
+}
+
+.detail_produk button {
+    background-color: #d7bd94;
+}
+
+.detail_produk .input-group i {
+    color: #222;
+}
+
+.cart button {
+    background-color: #d7bd94;
+}
+
 footer h6 {
     color: white;
     padding-bottom: 20px;
