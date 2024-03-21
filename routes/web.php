@@ -20,10 +20,15 @@ Route::get('/', function () {
 });
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
+Route::get('/detail_produk', function () {
+    return view('detail_produk');
+})->name('detail_produk');
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
 
 Route::controller(LoginController::class)->group(function (){
-    Route::get('/login', 'index');
+    Route::get('/login', 'index')->name('login');
     Route::post('check_login', 'check');
 });
-Route::get('/get_admin', [AdminController::class, 'get_admin']);

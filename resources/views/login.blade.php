@@ -30,7 +30,7 @@
             <button class="btn mt-3 text-black">Login</button>
         </form>
         <div class="text-center fs-6">
-            <a href="#">Forget password?</a> <span style="color: black">or</span> <a href="/register">Sign up</a>
+            <a href="#">Forget password?</a> <span style="color: black">or</span> <a href="{{route('register')}}">Sign up</a>
         </div>
         <div class="form-group col-lg-12 mx-auto d-flex align-items-center justify-content-center mt-4 mb-2">
             <div class="border-bottom border-dark w-25 ml-5"></div>

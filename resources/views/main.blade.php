@@ -40,7 +40,7 @@
                 <img src="{{asset('images/v50_56.png')}}" alt="">
                 <div class="item d-flex">
                     <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><i class="fa fa-shopping-bag"></i></a>
+                    <a href="{{route('detail_produk')}}"><i class="fa fa-shopping-bag"></i></a>
                 </div>
             </div>
             <div class="col col-md-auto">
