@@ -14,6 +14,18 @@
 <body style="background-color: black">
     <h1 class="text-center" style="color: #d7bd94; margin-top: 50px">Login</h1>
     <div class="wrapper">
+        @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+        @endif
+        @if(session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+        @endif
         <div class="logo">
             <img src="{{asset('images/mockup-graphics-1q4IIdEnIWA-unsplash-removebg-preview.png')}}" alt="">
         </div>
@@ -21,7 +33,7 @@
         @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-user"></span>
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="email" name="email" id="email" placeholder="Email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-key"></span>

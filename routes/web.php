@@ -1,8 +1,10 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,19 @@ Route::get('/detail_produk', function () {
 })->name('detail_produk');
 Route::get('/cart', function () {
     return view('cart');
-})->name('cart');
+})->name('cart')->middleware('auth', 'verified');
 Route::get('/admin', function () {
     return view('admin');
-})->name('admin');
+})->name('admin')->middleware('auth','admin');
 
 Route::controller(LoginController::class)->group(function (){
-    Route::get('/login', 'index')->name('login');
-    Route::post('check_login', 'check');
+    Route::get('/login', 'index')->name('login')->middleware('guest');
+    Route::post('check_login', 'authenticate');
+    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });
+
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/check_register', [RegisterController::class, 'store']);
+Route::get('/email/verify', [RegisterController::class, 'emailverify'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verifverify'])->middleware(['auth', 'signed'])->name('verification.verify');
