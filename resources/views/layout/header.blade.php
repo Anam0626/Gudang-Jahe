@@ -18,25 +18,31 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/"><img src="{{asset('images/v21_13.png')}}" width="150" height="70" alt=""></a>
-            <div class="collapse navbar-collapse justify-content-center flex-grow-1" id="navbarTogglerDemo01">
-                <ul class="navbar-nav">
-                    <li class="nav-item mx-5">
-                    <a class="nav-link fw-bolder" aria-current="page" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item mx-5">
-                    <a class="nav-link fw-bolder" aria-current="page" href="#about">About</a>
-                    </li>
-                    <li class="nav-item mx-5">
-                    <a class="nav-link fw-bolder" aria-current="page" href="#product">Product</a>
-                    </li>
-                    <li class="nav-item mx-5">
-                    <a class="nav-link fw-bolder" aria-current="page" href="#testimoni">Testimoni</a>
-                    </li>
-                </ul>
-            </div>
+            @if (Route::currentRouteName() == '')
+                <div class="collapse navbar-collapse justify-content-center flex-grow-1" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#about">About</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#product">Product</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#testimoni">Testimoni</a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
             <div class="icon d-flex gap-5">
                 <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
-                <a href="{{route('login')}}"><i class="fa fa-user"></i></a>
+                @auth
+                <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a>
+                @else
+                <a href="{{route('login')}}"><i class="fa fa-sign-in"></i></a>
+                @endauth
             </div>
             <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

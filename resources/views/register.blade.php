@@ -17,24 +17,28 @@
         <div class="logo">
             <img src="{{asset('images/mockup-graphics-1q4IIdEnIWA-unsplash-removebg-preview.png')}}" alt="">
         </div>
-        <form class="p-3" action="" method="POST">
+        <form class="p-3" action="{{url('check_register')}}" method="POST">
         @csrf
+            {{-- <div class="form-field d-flex align-items-center">
+                <span class="fa fa-user"></span>
+                <input type="text" name="name" id="name" placeholder="Name">
+            </div> --}}
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-user"></span>
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="email" name="email" id="email" placeholder="Email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-key"></span>
                 <input type="password" name="password" id="password" placeholder="Password">
             </div>
-            <div class="form-field d-flex align-items-center">
+            {{-- <div class="form-field d-flex align-items-center">
                 <span class="fa fa-map-marker"></span>
                 <input type="alamat" name="alamat" id="alamat" placeholder="Alamat">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-phone"></span>
-                <input type="no_telepon" name="no_telepon" id="no_telepon" placeholder="No Telepon">
-            </div>
+                <input name="telp" id="telp" placeholder="No Telepon">
+            </div> --}}
             <button class="btn mt-3 text-black">Register</button>
         </form>
         <div class="text-center fs-6">

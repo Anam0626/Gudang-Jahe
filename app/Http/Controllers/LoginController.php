@@ -1,33 +1,43 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Session;
 use Illuminate\Http\Request;
-use App\Models\Pembeli;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
-    public function index(){
+    function index(){
         return view('login');
     }
 
-    public function check(Request $request){
-        $username = $request->username;
-        $password = $request->password;
+     public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-        $data = Pembeli::where("username", $username)->where("password", $password);
-        if ($data->count() > 0) {
-            Session::put("logged_in", true);
-            Session::put("pembeli", $data->first());
-            return redirect("/");
-        } else {
-            return redirect("/login")->with("message", "Username/Password tidak cocok!");
+        if (Auth::Attempt($credentials)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect('admin');
+            } else {
+                return redirect()->intended('/');
+            }
         }
+
+        return back()->with('loginError', 'Login Failed');
     }
 
-    public function logout(){
-        Session::flush();
-        return redirect('/login');
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
