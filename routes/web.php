@@ -27,6 +27,9 @@ Route::get('/detail_produk', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
+Route::get('/admin', function () {
+    return view('admin');
+})->name('admin');
 
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'index')->name('login');
