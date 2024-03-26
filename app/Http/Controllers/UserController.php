@@ -14,8 +14,9 @@ class UserController extends Controller
 
     public function totalUsers()
     {
+        $user = User::all();
         $totalUsers = User::count();
-        return view('admin.dashboard', ['totalUsers' => $totalUsers]);
+        return view('admin.dashboard', ['totalUsers' => $totalUsers], ['user' => $user]);
     }
 
     function destroy(User $user){

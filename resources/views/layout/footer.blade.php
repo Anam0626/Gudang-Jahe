@@ -1,5 +1,5 @@
 <footer>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-sm-6">
                 <img src="{{asset('images/v21_13.png')}}" style="margin-top: -15px" alt="">

@@ -9,7 +9,7 @@
                 <h1 class="text-uppercase display-1 fw-bold" style="color: #ffffff;">gudang</h1>
                 <h1 class="text-uppercase display-1 fw-bold" style="color: #D7BD94;">JAHE</h1>
                 <p class="col-sm-8" style="color: #ffffff">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero assumenda vitae, provident ratione harum, esse recusandae reprehenderit illo, quia nobis aliquid. Eveniet magni, corrupti tempora eligendi sed natus voluptatibus voluptates.
+                    Gudang Jahe is a trusted destination for ginger lovers who are looking for the best quality and authentic benefits.
                 </p>
             </div>
         </div>
@@ -18,7 +18,7 @@
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;"><a style="color: #D7BD94">about</a> us</h1>
         <div class="row">
             <div class="left col-sm-6 d-flex justify-content-center align-self-center">
-                <p class="col-sm-8" style="color: #ffffff">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde blanditiis fugit, sapiente minus hic ut vero architecto illo dicta dolor, voluptatibus consequatur perferendis officiis quod, laborum incidunt nostrum impedit ullam?</p>
+                <p class="col-sm-8" style="color: #ffffff">We offer high quality ginger that has attracted the interest of consumers both domestically and internationally. We recognize the importance of ginger as a commodity rich in benefits and properties. Therefore, we are committed to providing the best ginger taken directly from the source, by maintaining its freshness and ensuring that every product we offer provides unparalleled added value for health and consumer satisfaction.</p>
             </div>
             <div class="right col-sm-5">
                 <div class="image">
@@ -36,36 +36,17 @@
     <section class="product" id="product">
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;">Our <a style="color: #D7BD94">Product</a></h1>
         <div class="row gap-5 m-5 justify-content-center">
-            <div class="col col-md-auto">
-                <img src="{{asset('images/v50_56.png')}}" alt="">
-                <div class="item d-flex">
-                    <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href="{{route('detail_produk')}}"><i class="fa fa-shopping-bag"></i></a>
+                @foreach ($produk as $produk)
+                <div class="col col-md-auto">
+                    <img src="{{ asset('storage/'. $produk->gambar) }}" alt="">
+                    <div class="item d-flex">
+                        <p class="fw-bold flex-grow-1">{{$produk->nama}}</p>
+                        <a href="{{route('detail_produk')}}"><i class="fa fa-shopping-bag"></i></a>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            <div class="col col-md-auto">
-                <img src="{{asset('images/v31_19.png')}}" alt="">
-                <div class="item d-flex">
-                    <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><i class="fa fa-shopping-bag"></i></a>
-                </div>
-            </div>
-            <div class="col col-md-auto">
-                <img src="{{asset('images/v31_20.png')}}" alt="">
-                <div class="item d-flex">
-                    <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><i class="fa fa-shopping-bag"></i></a>
-                </div>
-            </div>
-            <div class="col col-md-auto">
-                <img src="{{asset('images/v31_20.png')}}" alt="">
-                <div class="item d-flex">
-                    <p class="fw-bold flex-grow-1">Jahe</p>
-                    <a href=""><i class="fa fa-shopping-bag"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
     <section class="testimoni" id="testimoni">
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;"><span style="color: #D7BD94">WHY</span> PEOPLE <span style="color: #D7BD94">BELIEVE</span> IN US</h1>
         <div class='container-fluid mx-auto mt-5 mb-5 col-12' style="text-align: center">
@@ -73,31 +54,31 @@
     <div class="row" style="justify-content: center">
         <div class="card col-md-3 col-12">
             <div class="card-content">
-                <div class="card-body"> <img class="img" src="https://i.imgur.com/S7FJza5.png" />
+                <div class="card-body"> <i class="fa fa-star fa-2x"></i>
                     <div class="shadow"></div>
-                    <div class="card-title"> We're Free </div>
+                    <div class="card-title"> premium-quality </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted">We spent thousands of hours creating on algorithm that does this for you in seconds. We collect a small fee from the professional after they meet your</small> </p>
+                        <p> <small class="text-muted">People believe in us because our premium-quality ginger is sourced directly from trusted farmers, ensuring freshness and potency with every purchase.</small> </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="card col-md-3 col-12 ml-2">
             <div class="card-content">
-                <div class="card-body"> <img class="img" src="https://i.imgur.com/xUWJuHB.png" />
-                    <div class="card-title"> We're Unbiased </div>
+                <div class="card-body"> <i class="fa fa-cart-arrow-down fa-2x"></i>
+                    <div class="card-title"> Transparency </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted"> We don't accept ads from anyone. We use actual data to match you who the best person for each job </small> </p>
+                        <p> <small class="text-muted"> Our commitment to transparency and integrity in our sourcing and production processes instills confidence in our customers, making us a trusted choice for their ginger needs. </small> </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="card col-md-3 col-12 ml-2">
             <div class="card-content">
-                <div class="card-body"> <img class="img rck" src="https://i.imgur.com/rG3CGn3.png" />
-                    <div class="card-title"> We Guide you </div>
+                <div class="card-body"> <i class="fa fa-thumb-tack fa-2x"></i>
+                    <div class="card-title"> Good Product </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted">Buying or selling a home is often the largest transaction anyone does in their life. we guide you through the process so that you can be confident in reaching your dream outcome.</small> </p>
+                        <p> <small class="text-muted">With a track record of delivering genuine health benefits and unbeatable flavor, our brand has earned the trust of countless individuals seeking the finest ginger products available.</small> </p>
                     </div>
                 </div>
             </div>
@@ -108,13 +89,13 @@
     <section class="contact" id="contact">
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;">you want a <a style="color: #D7BD94">ginger</a><br><a style="color: #D7BD94">contact</a> us</h1>
         <div class="row justify-content-center">
-            <div class="right col-md-auto mt-10">
+            <div class="right col-md-auto">
                 <h6 class="text-white">Write to Us</h6>
                 <a href=""><img src="{{asset('images/v50_36.png')}}" class="pb-4"></a>
                 <h6 class="text-white">Call us the number</h6>
                 <p class="pb-3">081259051602</p>
                 <h6 class="text-white">Find us here</h6>
-                <p>JL.Jaksa Agung Suprapto III/15</p>
+                <p>Jl. Raya Tambakrejo No.09,<br> Tambakrejo, Tambakasri, <br>Kec. Tajinan, Kabupaten Malang,<br> Jawa Timur 65172</p>
             </div>
             <div class="left col-md-auto">
                 <img src="{{asset('images/mockup-graphics-1q4IIdEnIWA-unsplash-removebg-preview.png')}}" class="img-fluid" alt="">

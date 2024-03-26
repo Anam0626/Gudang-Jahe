@@ -65,11 +65,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-just-icon btn-sm" data-bs-toggle="modal" data-bs-target="#delete">
+                                <button type="submit" class="btn btn-danger btn-just-icon btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{$user->id}}">
                                     <i class="fa fa-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="delete-{{$user->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                         <div class="modal-header">

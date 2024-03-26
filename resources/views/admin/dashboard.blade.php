@@ -17,8 +17,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
+                        <div class="numbers">4</div>
+                        <div class="cardName">Produk</div>
                     </div>
 
                     <div class="iconBx">
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="cardName">Total Order</div>
                     </div>
 
                     <div class="iconBx">
@@ -39,7 +39,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">$7,842</div>
+                        <div class="numbers">Rp.800.000</div>
                         <div class="cardName">Earning</div>
                     </div>
 
@@ -69,57 +69,43 @@
 
                         <tbody>
                             <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
+                                <td>Jahe Gajah</td>
+                                <td>Rp. 100.000</td>
                                 <td>Paid</td>
                                 <td><span class="status delivered">Delivered</span></td>
                             </tr>
 
                             <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
+                                <td>Jahe Merah</td>
+                                <td>Rp. 1.000.000</td>
                                 <td>Due</td>
                                 <td><span class="status pending">Pending</span></td>
                             </tr>
 
                             <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
+                                <td>Jahe Gajah</td>
+                                <td>Rp. 600.000 </td>
                                 <td>Due</td>
                                 <td><span class="status inProgress">In Progress</span></td>
                             </tr>
 
                             <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
+                                <td>Jahe Emprit</td>
+                                <td>Rp. 700.000</td>
                                 <td>Paid</td>
                                 <td><span class="status delivered">Delivered</span></td>
                             </tr>
 
                             <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
+                                <td>Jahe Merah</td>
+                                <td>Rp. 200.000</td>
                                 <td>Due</td>
                                 <td><span class="status pending">Pending</span></td>
                             </tr>
 
                             <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
+                                <td>Jahe Emprit</td>
+                                <td>Rp. 800.000</td>
                                 <td>Due</td>
                                 <td><span class="status inProgress">In Progress</span></td>
                             </tr>
@@ -134,77 +120,16 @@
                     </div>
 
                     <table>
+                        @foreach ($user as $user)
                         <tr>
                             <td width="60px">
                                 <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>David <br> <span>Italy</span></h4>
+                                <h4>{{$user->name}} <br><span>{{$user->email}}</span></h4>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>
