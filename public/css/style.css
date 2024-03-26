@@ -438,7 +438,7 @@ body {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     background-color: var(--ginger);
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .table-responsive table {

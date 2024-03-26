@@ -41,6 +41,14 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/produk">
+                        <span class="icon">
+                            <i class="fa fa-cart-plus fa-2x"></i>
+                        </span>
+                        <span class="title">Products</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('logout')}}">
                         <span class="icon">
                             <i class="fa fa-sign-out fa-2x"></i>

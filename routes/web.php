@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -18,9 +19,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', [ProdukController::class, 'produk']);
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');
@@ -31,12 +31,19 @@ Route::get('/dashboard', [UserController::class, 'totalUsers'])->name('dashboard
 Route::get('/user', [UserController::class, 'index'])->name('user')->middleware('auth','admin');
 Route::put('/user/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth','admin');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth','admin');
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk')->middleware('auth','admin');
+Route::post('/produk/store', [ProdukController::class, 'store'])->name('produk.store')->middleware('auth','admin');
+Route::put('/produk/{produk}', [ProdukController::class, 'edit'])->name('produk.edit')->middleware('auth','admin');
+Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy')->middleware('auth','admin');
+
+
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart')->middleware('auth', 'verified');
 Route::get('/admin', function () {
     return view('admin.admin');
 })->name('admin')->middleware('auth','admin');
+
 
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'index')->name('login')->middleware('guest');
