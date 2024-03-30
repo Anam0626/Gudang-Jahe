@@ -347,11 +347,18 @@ button:focus {
     text-transform: uppercase;
 }
 
-.detail_produk p {
-    margin-top: 100px;
+.detail_produk button {
+    background-color: #d7bd94;
 }
 
-.detail_produk button {
+.detail_produk a {
+    background-color: #d7bd94;
+}
+
+.detail_produk select {
+    background-color: #d7bd94;
+}
+.detail_produk input {
     background-color: #d7bd94;
 }
 

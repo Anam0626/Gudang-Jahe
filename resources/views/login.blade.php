@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
 </head>
 <body style="background-color: black">
     <h1 class="text-center" style="color: #d7bd94; margin-top: 50px">Login</h1>
@@ -42,13 +43,36 @@
             <button class="btn mt-3 text-black">Login</button>
         </form>
         <div class="text-center fs-6">
-            <a href="#">Forget password?</a> <span style="color: black">or</span> <a href="{{route('register')}}">Sign up</a>
+            <a href="reset">Forget password?</a> <span style="color: black">or</span> <a href="{{route('register')}}">Sign up</a>
         </div>
         <div class="form-group col-lg-12 mx-auto d-flex align-items-center justify-content-center mt-4 mb-2">
             <div class="border-bottom border-dark w-25 ml-5"></div>
             <span class="px-2 small text-muted fw-bold text-muted">Sign With</span>
             <div class="border-bottom border-dark w-25 mr-5"></div>
         </div>
-        <a href=""><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
+        <a href="{{ route('googlelogin') }}"><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
+    </div>
+
+    <div class="container-reset">
+        <h2 class="title">Kirim Email Reset password</h2>
+        <form action="{{ route('password.email') }}" method="post">
+            @csrf
+            <input type="text" placeholder="Email" name="email"><br>
+            <button class="resetbtn" type="submit">Kirim</button><br>
+        </form>
+        <div class="link">
+            <a href="cancel">Cancel</a>
+        </div>
     </div>
 </body>
+<script>
+     $(document).ready(function() {
+        $('.container-reset').hide();
+
+        $('a[href="reset"]').click(function(e) {
+        e.preventDefault();
+        $('.wrapper').hide();
+        $('.container-reset').show();
+        });
+    })
+</script>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Produk;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +16,22 @@ class ProdukController extends Controller
     public function produk(){
         $produk = Produk::all();
         return view('main', ['produk'=>$produk]);
+    }
+
+    public function detail_produk($id)
+    {
+        // Retrieve the product based on the provided name
+        $product = Produk::where('id', $id)->first();
+
+        // Check if the product exists
+        if (!$product) {
+            abort(404); // Or handle the case when the product is not found
+        }
+
+        $data['product'] = $product;
+
+        // Pass the product data to the view
+        return view('detail_produk', $data);
     }
 
     public function store(Request $request)

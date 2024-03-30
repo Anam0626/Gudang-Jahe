@@ -49,6 +49,6 @@
             <span class="px-2 small text-muted fw-bold text-muted">Sign up With</span>
             <div class="border-bottom border-dark w-25 mr-5"></div>
         </div>
-        <a href=""><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
+        <a href="{{route('googlelogin')}}"><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
     </div>
 </body>
