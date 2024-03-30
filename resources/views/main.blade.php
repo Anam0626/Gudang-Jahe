@@ -41,7 +41,7 @@
                     <img src="{{ asset('storage/'. $produk->gambar) }}" alt="">
                     <div class="item d-flex">
                         <p class="fw-bold flex-grow-1">{{$produk->nama}}</p>
-                        <a href="{{route('detail_produk')}}"><i class="fa fa-shopping-bag"></i></a>
+                        <a href="{{ route('product', $produk->id) }}"><i class="fa fa-shopping-bag"></i></a>
                     </div>
                 </div>
                 @endforeach
@@ -50,7 +50,6 @@
     <section class="testimoni" id="testimoni">
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;"><span style="color: #D7BD94">WHY</span> PEOPLE <span style="color: #D7BD94">BELIEVE</span> IN US</h1>
         <div class='container-fluid mx-auto mt-5 mb-5 col-12' style="text-align: center">
-    <p><small class="text-muted">Always render more and better service than <br />is expected of you, no matter what your ask may be.</small></p>
     <div class="row" style="justify-content: center">
         <div class="card col-md-3 col-12">
             <div class="card-content">

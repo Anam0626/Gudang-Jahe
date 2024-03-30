@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\CartController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -21,12 +22,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [ProdukController::class, 'produk']);
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
-Route::get('/detail_produk', function () {
-    return view('detail_produk');
-})->name('detail_produk');
 Route::get('/dashboard', [UserController::class, 'totalUsers'])->name('dashboard')->middleware('auth','admin');
 Route::get('/user', [UserController::class, 'index'])->name('user')->middleware('auth','admin');
 Route::put('/user/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth','admin');
@@ -37,9 +32,12 @@ Route::put('/produk/{produk}', [ProdukController::class, 'edit'])->name('produk.
 Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy')->middleware('auth','admin');
 
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart')->middleware('auth', 'verified');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart')->middleware('auth', 'verified');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart')->middleware('auth', 'verified');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('updateCart')->middleware('auth', 'verified');
+Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('deleteItem.cart')->middleware('auth', 'verified');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth', 'verified');
+
 Route::get('/admin', function () {
     return view('admin.admin');
 })->name('admin')->middleware('auth','admin');
@@ -49,10 +47,19 @@ Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'index')->name('login')->middleware('guest');
     Route::post('check_login', 'authenticate');
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+    Route::get('/auth/google', 'redirectgoogle')->name('googlelogin');
+    Route::post('/forgot-password', 'forgotpassword')->name('password.email');
+    Route::get('/reset-password/{token}', 'restpwtkn')->name('password.reset');
+    Route::post('/reset-password', 'restpw')->name('password.update');
 });
 
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/check_register', [RegisterController::class, 'store']);
+Route::get('/auth/google/callback', [RegisterController::class, 'handlergoogle'])->name('googlecallback');
 Route::get('/email/verify', [RegisterController::class, 'emailverify'])->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verifverify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::get('/{id}', [ProdukController::class, 'detail_produk'])->name('product');
+

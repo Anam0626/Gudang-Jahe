@@ -36,7 +36,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="telp" class="form-label">Deskripsi</label>
-                                <input type="textarea" class="form-control" name="deskripsi" id="deskripsi">
+                                <textarea class="form-control" placeholder="Deskripsi" id="deskripsi" name="deskripsi" style="height: 100px"></textarea>
                             </div>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -55,7 +55,7 @@
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Gambar</th>
-                        <th>Deskripsi</th>
+                        <th class="col-3">Deskripsi</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -66,7 +66,7 @@
                             <td>{{$produk->nama}}</td>
                             <td>{{$produk->harga}}</td>
                             <td>{{$produk->stok}}</td>
-                            <td><img src="{{ asset('storage/'. $produk->gambar) }}" alt="Gambar" style="width: 50px"></td>
+                            <td><img src="{{ asset('storage/'. $produk->gambar) }}" alt="Gambar" style="width: 100px"></td>
                             <td>{{$produk->deskripsi}}</td>
                             <td class="td-actions text-right d-flex">
                                 <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{$produk->id}}">
