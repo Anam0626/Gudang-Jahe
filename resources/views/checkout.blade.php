@@ -21,17 +21,18 @@
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate>
+          <form id="orderForm" name="orderForm" action="" method="POST">
+            @csrf
             <div class="mb-3">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Name">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
               <div class="invalid-feedback">
                 Name
               </div>
             </div>
             <div class="mb-3">
               <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -39,7 +40,7 @@
 
             <div class="mb-3">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" >
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -48,21 +49,21 @@
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="kota">Kota</label>
-                <input type="text" class="form-control" placeholder="" required>
+                <input type="text" class="form-control" name="kota" placeholder="" >
                 <div class="invalid-feedback">
                   Kota required.
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="kecamatan">Kecamatan</label>
-                <input type="text" class="form-control" placeholder="" required>
+                <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="" >
                 <div class="invalid-feedback">
                   kecamatan required.
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="kodepos">Kode Pos</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <input type="text" class="form-control" name="kodepos" id="kodepos" placeholder="" >
                 <div class="invalid-feedback">
                   Zip code required.
                 </div>
@@ -72,11 +73,11 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                <input id="credit" name="paymentMethod" type="radio" value="cod" class="custom-control-input" >
                 <label class="custom-control-label" for="credit">COD</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <input id="debit" name="paymentMethod" type="radio" value="" class="custom-control-input" >
                 <label class="custom-control-label" for="debit">Debit card</label>
               </div>
             </div>
@@ -88,3 +89,18 @@
       </div>
 
       @include('layout.footer')
+
+<script type="text/javascript">
+    $("#orderForm").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url: '{{ route("processCheckout") }}',
+            type: 'post',
+            data: $(this).serializeArray(),
+            dataType: 'json',
+            success: function(response){
+
+            },
+        });
+    })
+</script>

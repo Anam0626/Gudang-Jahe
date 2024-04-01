@@ -43,9 +43,17 @@
                 <li>
                     <a href="/produk">
                         <span class="icon">
-                            <i class="fa fa-cart-plus fa-2x"></i>
+                            <i class="fa fa-dropbox fa-2x"></i>
                         </span>
                         <span class="title">Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/orders">
+                        <span class="icon">
+                            <i class="fa fa-cart-plus fa-2x"></i>
+                        </span>
+                        <span class="title">Order</span>
                     </a>
                 </li>
                 <li>
