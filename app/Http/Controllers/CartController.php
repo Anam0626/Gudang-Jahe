@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Produk;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -104,6 +107,60 @@ class CartController extends Controller
             return redirect()->route('cart');
         }
         return view('checkout');
+    }
+
+    public function processCheckout(Request $request){
+        $validator = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+            'kodepos' => 'required',
+        ]);
+
+        $user =  Auth::user();
+
+        if($request->paymentMethod == 'cod'){
+            $subTotal = Cart::subtotal(2, '.', '');
+
+            $order = new Order;
+            $order->user_id = $user->id;
+            $order->subtotal = $subTotal;
+
+            $order->name = $request->name;
+            $order->email = $request->email;
+            $order->address = $request->address;
+            $order->kota = $request->kota;
+            $order->kecamatan = $request->kecamatan;
+            $order->kodepos = $request->kodepos;
+            $order->save();
+
+            foreach(Cart::content() as $item){
+                $orderItem = new OrderItem;
+                $orderItem->produk_id = $item->id;
+                $orderItem->order_id = $order->id;
+                $orderItem->name = $item->name;
+                $orderItem->qty = $item->qty;
+                $orderItem->price = $item->price;
+                $orderItem->total = $item->price*$item->qty;
+                $orderItem->save();
+
+                $produkData = Produk::find($item->id);
+                $currentQty = $produkData->stok;
+                $updateQty = $currentQty-$item->qty;
+                $produkData->stok = $updateQty;
+                $produkData->save();
+            }
+
+            session()->flash('success', 'you have successfully placed orde');
+
+            Cart::destroy();
+
+
+        } else {
+
+        }
     }
 
 }

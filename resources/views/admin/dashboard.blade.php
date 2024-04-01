@@ -17,7 +17,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">4</div>
+                        <div class="numbers">{{ $totalProduks }}</div>
                         <div class="cardName">Produk</div>
                     </div>
 
@@ -28,7 +28,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
+                        <div class="numbers">{{$totalOrders}}</div>
                         <div class="cardName">Total Order</div>
                     </div>
 
@@ -39,7 +39,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">Rp.800.000</div>
+                        <div class="numbers">Rp. {{ number_format($totalRevenue) }}</div>
                         <div class="cardName">Earning</div>
                     </div>
 
@@ -54,7 +54,7 @@
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                        <a href="{{ route('orders') }}" class="btn">View All</a>
                     </div>
 
                     <table>
@@ -68,47 +68,24 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Jahe Gajah</td>
-                                <td>Rp. 100.000</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Jahe Merah</td>
-                                <td>Rp. 1.000.000</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Jahe Gajah</td>
-                                <td>Rp. 600.000 </td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Jahe Emprit</td>
-                                <td>Rp. 700.000</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Jahe Merah</td>
-                                <td>Rp. 200.000</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Jahe Emprit</td>
-                                <td>Rp. 800.000</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
+                            @if ($orders->isNotEmpty())
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->name }}</td>
+                                        <td>Rp. {{ number_format($order->subtotal) }}</td>
+                                        <td>{{ $order->payment_status }}</td>
+                                        <td>
+                                            @if ($order->status == 'pending')
+                                                <span class="status pending">Pending</span>
+                                            @elseif ($order->status == 'inprogress')
+                                                <span class="status inProgress">In Progress</span>
+                                            @else
+                                                <span class="status delivered">Delivered</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -122,9 +99,6 @@
                     <table>
                         @foreach ($user as $user)
                         <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
                             <td>
                                 <h4>{{$user->name}} <br><span>{{$user->email}}</span></h4>
                             </td>

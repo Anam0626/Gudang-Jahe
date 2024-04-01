@@ -12,13 +12,6 @@ class UserController extends Controller
         return view('admin.user', ['user'=>$user]);
     }
 
-    public function totalUsers()
-    {
-        $user = User::all();
-        $totalUsers = User::count();
-        return view('admin.dashboard', ['totalUsers' => $totalUsers], ['user' => $user]);
-    }
-
     function destroy(User $user){
         $user->delete();
         return redirect()->route('user')->with('pesan', "hapus data $user->name berhasil");

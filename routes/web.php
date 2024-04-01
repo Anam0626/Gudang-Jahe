@@ -7,6 +7,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -22,7 +24,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [ProdukController::class, 'produk']);
 
-Route::get('/dashboard', [UserController::class, 'totalUsers'])->name('dashboard')->middleware('auth','admin');
+Route::get('/dashboard', [DashboardController::class, 'totalCount'])->name('dashboard')->middleware('auth','admin');
+
 Route::get('/user', [UserController::class, 'index'])->name('user')->middleware('auth','admin');
 Route::put('/user/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth','admin');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth','admin');
@@ -31,12 +34,16 @@ Route::post('/produk/store', [ProdukController::class, 'store'])->name('produk.s
 Route::put('/produk/{produk}', [ProdukController::class, 'edit'])->name('produk.edit')->middleware('auth','admin');
 Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy')->middleware('auth','admin');
 
+Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middleware('auth','admin');
+Route::get('/orders/{id}', [OrderController::class, 'detail'])->name('ordersDetail')->middleware('auth','admin');
+Route::post('/orders/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('changeOrderStatus')->middleware('auth','admin');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart')->middleware('auth', 'verified');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart')->middleware('auth', 'verified');
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('updateCart')->middleware('auth', 'verified');
 Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('deleteItem.cart')->middleware('auth', 'verified');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth', 'verified');
+Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('processCheckout')->middleware('auth', 'verified');
 
 Route::get('/admin', function () {
     return view('admin.admin');

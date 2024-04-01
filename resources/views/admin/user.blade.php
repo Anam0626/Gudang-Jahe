@@ -8,10 +8,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
-                        <th>Name</th>
                         <th>Email</th>
-                        <th>Alamat</th>
-                        <th>Telp</th>
                         <th>role</th>
                         <th class="text-right">Actions</th>
                     </tr>
@@ -20,10 +17,7 @@
                     @foreach ($user as $user)
                         <tr>
                             <td class="text-center">{{$user->id}}</td>
-                            <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->alamat}}</td>
-                            <td>{{$user->telp}}</td>
                             <td>{{$user->role}}</td>
                             <td class="td-actions text-right d-flex">
                                 <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{$user->id}}">
@@ -50,13 +44,6 @@
                                                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="{{ old('email') ?? $user->email}}">
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <label for="alamat" class="form-label">Alamat</label>
-                                                    <input type="text" class="form-control" name="alamat" id="alamat" value="{{ old('alamat') ?? $user->alamat}}">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="telp" class="form-label">Telepon</label>
-                                                    <input type="text" class="form-control" name="telp" id="telp" value="{{ old('telp') ?? $user->telp}}">
                                                 </div>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Save changes</button>
