@@ -9,6 +9,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MidtransController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -23,6 +24,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', [ProdukController::class, 'produk']);
+
 
 Route::get('/dashboard', [DashboardController::class, 'totalCount'])->name('dashboard')->middleware('auth','admin');
 
@@ -43,6 +45,7 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCa
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('updateCart')->middleware('auth', 'verified');
 Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('deleteItem.cart')->middleware('auth', 'verified');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth', 'verified');
+Route::get('/thankyou', [CartController::class, 'thankyou'])->name('thankyou')->middleware('auth', 'verified');
 Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('processCheckout')->middleware('auth', 'verified');
 
 Route::get('/admin', function () {

@@ -15,10 +15,10 @@
                                             <div class="col-sm-4 invoice-col">
                                             <h1 class="h5 mb-3">Shipping Address</h1>
                                             <address>
-                                                <strong>{{ $order->name }}</strong><br>
-                                                {{ $order->address }}<br>
+                                                <strong>{{ $order->nama }}</strong><br>
+                                                {{ $order->alamat }}<br>
                                                 {{ $order->kota }}, {{ $order->kecamatan }}, {{ $order->kodepos }}<br>
-                                                {{-- {{ $order->phone }}<br> --}}
+                                                {{ $order->notelp }}<br> 
                                                 Email: {{ $order->email }}
                                             </address>
                                             </div>

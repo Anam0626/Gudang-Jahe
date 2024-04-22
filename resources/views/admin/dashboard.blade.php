@@ -71,7 +71,7 @@
                             @if ($orders->isNotEmpty())
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{ $order->name }}</td>
+                                        <td>{{ $order->nama }}</td>
                                         <td>Rp. {{ number_format($order->subtotal) }}</td>
                                         <td>{{ $order->payment_status }}</td>
                                         <td>

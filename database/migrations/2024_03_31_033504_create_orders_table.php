@@ -16,14 +16,16 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->double('subtotal',10,2);
 
-            $table->string('name');
+            $table->string('nama');
             $table->string('email');
-            $table->string('address');
+            $table->string('alamat');
+            $table->string('notelp');
             $table->string('kota');
             $table->string('kecamatan');
             $table->string('kodepos');
 
             $table->enum('status', ['pending', 'delivered', 'inprogress'])->default('pending');
+            $table->timestamp('shipped_date')->nullable();
             $table->enum('payment_status', ['paid', 'not paid'])->default('not paid');;
 
             $table->timestamps();
