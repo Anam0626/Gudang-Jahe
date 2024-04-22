@@ -9,7 +9,8 @@
                 <h1 class="text-uppercase display-1 fw-bold" style="color: #ffffff;">gudang</h1>
                 <h1 class="text-uppercase display-1 fw-bold" style="color: #D7BD94;">JAHE</h1>
                 <p class="col-sm-8" style="color: #ffffff">
-                    Gudang Jahe is a trusted destination for ginger lovers who are looking for the best quality and authentic benefits.
+                    Gudang Jahe is a trusted destination for ginger lovers who are looking for the best 
+                    quality and authentic benefits.
                 </p>
             </div>
         </div>
@@ -18,7 +19,11 @@
         <h1 class="text-uppercase display-6 fw-bold text-center" style="color: #ffffff;"><a style="color: #D7BD94">about</a> us</h1>
         <div class="row">
             <div class="left col-sm-6 d-flex justify-content-center align-self-center">
-                <p class="col-sm-8" style="color: #ffffff">We offer high quality ginger that has attracted the interest of consumers both domestically and internationally. We recognize the importance of ginger as a commodity rich in benefits and properties. Therefore, we are committed to providing the best ginger taken directly from the source, by maintaining its freshness and ensuring that every product we offer provides unparalleled added value for health and consumer satisfaction.</p>
+                <p class="col-sm-8" style="color: #ffffff">We offer high quality ginger that has attracted the interest 
+                of consumers both domestically and internationally. We recognize the importance of ginger as a commodity 
+                rich in benefits and properties. Therefore, we are committed to providing the best ginger taken directly 
+                from the source, by maintaining its freshness and ensuring that every product we offer provides unparalleled 
+                added value for health and consumer satisfaction.</p>
             </div>
             <div class="right col-sm-5">
                 <div class="image">
@@ -57,7 +62,12 @@
                     <div class="shadow"></div>
                     <div class="card-title"> premium-quality </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted">People believe in us because our premium-quality ginger is sourced directly from trusted farmers, ensuring freshness and potency with every purchase.</small> </p>
+                        <p> 
+                            <small class="text-muted">
+                                People believe in us because our premium-quality ginger is sourced directly from trusted farmers,
+                                 ensuring freshness and potency with every purchase.
+                            </small>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -67,7 +77,13 @@
                 <div class="card-body"> <i class="fa fa-cart-arrow-down fa-2x"></i>
                     <div class="card-title"> Transparency </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted"> Our commitment to transparency and integrity in our sourcing and production processes instills confidence in our customers, making us a trusted choice for their ginger needs. </small> </p>
+                        <p> 
+                            <small class="text-muted"> 
+                            Our commitment to transparency and integrity in our 
+                            sourcing and production processes instills confidence 
+                            in our customers, making us a trusted choice for their ginger needs. 
+                            </small> 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -77,7 +93,13 @@
                 <div class="card-body"> <i class="fa fa-thumb-tack fa-2x"></i>
                     <div class="card-title"> Good Product </div>
                     <div class="card-subtitle">
-                        <p> <small class="text-muted">With a track record of delivering genuine health benefits and unbeatable flavor, our brand has earned the trust of countless individuals seeking the finest ginger products available.</small> </p>
+                        <p> 
+                            <small class="text-muted">
+                                With a track record of delivering genuine health benefits 
+                                and unbeatable flavor, our brand has earned the trust of 
+                                countless individuals seeking the finest ginger products available.
+                            </small>
+                        </p>
                     </div>
                 </div>
             </div>

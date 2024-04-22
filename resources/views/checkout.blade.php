@@ -24,10 +24,10 @@
           <form id="orderForm" name="orderForm" action="" method="POST">
             @csrf
             <div class="mb-3">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+              <label for="name">Nama</label>
+              <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
               <div class="invalid-feedback">
-                Name
+                Nama
               </div>
             </div>
             <div class="mb-3">
@@ -39,10 +39,18 @@
             </div>
 
             <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" >
+              <label for="alamat">alamat</label>
+              <input type="text" class="form-control" name="alamat" id="alamat" >
               <div class="invalid-feedback">
                 Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="notelp">no telp</label>
+              <input type="text" class="form-control" name="notelp" id="notelp" >
+              <div class="invalid-feedback">
+                Please enter your number.
               </div>
             </div>
 
@@ -73,34 +81,84 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" value="cod" class="custom-control-input" >
-                <label class="custom-control-label" for="credit">COD</label>
+                <input id="cod" name="paymentMethod" type="radio" value="cod" class="custom-control-input" >
+                <label class="custom-control-label" for="cod">COD</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" value="" class="custom-control-input" >
-                <label class="custom-control-label" for="debit">Debit card</label>
+                <input id="transfer" name="paymentMethod" type="radio" value="transfer" class="custom-control-input" >
+                <label class="custom-control-label" for="transfer">Transfer</label>
               </div>
             </div>
 
             <hr class="mb-5 mt-5">
-            <button class="btn btn-dark btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Place your orders</button>
           </form>
         </div>
       </div>
 
-      @include('layout.footer')
+@include('layout.footer')
 
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{config('midtrans.client_key')}}"></script>
 <script type="text/javascript">
     $("#orderForm").submit(function(event){
         event.preventDefault();
-        $.ajax({
+        
+        // Mendapatkan nilai dari radio button yang dipilih
+        var paymentMethod = $("input[name='paymentMethod']:checked").val();
+
+        // Memeriksa nilai paymentMethod
+        if(paymentMethod === "cod") {
+          $.ajax({
             url: '{{ route("processCheckout") }}',
             type: 'post',
             data: $(this).serializeArray(),
             dataType: 'json',
             success: function(response){
-
+              if (response.status == true) {
+                // Arahkan pengguna ke halaman keranjang hanya jika permintaan berhasil
+                window.location.href= '{{route("thankyou")}}';
+              } else {
+                  alert(response.message);
+              }
             },
-        });
+          });
+        } else if(paymentMethod === "transfer") {
+            $.ajax({
+              url: '{{ route("processCheckout") }}',
+              type: 'post',
+              data: $(this).serializeArray(),
+              dataType: 'json',
+              success: function(response) { // response didefinisikan di sini
+                  var snapToken = response.snapToken;
+                  if (snapToken) {
+                      window.snap.pay(snapToken, {
+                        onSuccess: function(result){
+                          /* You may add your own implementation here */
+                          alert("payment success!"); 
+                          window.location.href= '{{route("cart")}}';
+                        },
+                        onPending: function(result){
+                          /* You may add your own implementation here */
+                          alert("wating your payment!"); console.log(result);
+                        },
+                        onError: function(result){
+                          /* You may add your own implementation here */
+                          alert("payment failed!"); console.log(result);
+                        },
+                        onClose: function(){
+                          /* You may add your own implementation here */
+                          alert('you closed the popup without finishing the payment');
+                        }
+                      });
+                  } else {
+                      alert("Snap token not found!");
+                  }
+              },
+          });
+        } else {
+            alert("Silakan pilih metode pembayaran terlebih dahulu.");
+        }
     })
 </script>
+

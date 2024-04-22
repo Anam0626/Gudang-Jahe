@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="{{ asset('js/jquery.js') }}"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -33,7 +34,7 @@
                         <a class="nav-link fw-bolder" aria-current="page" href="#product">Product</a>
                         </li>
                         <li class="nav-item mx-5">
-                        <a class="nav-link fw-bolder" aria-current="page" href="#testimoni">Testimoni</a>
+                        <a class="nav-link fw-bolder" aria-current="page" href="#contact">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +42,7 @@
             <div class="icon d-flex gap-5">
                 <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
                 @auth
-                <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a>
+                <a href="{{route('logout')}}"><i class="fa fa-user"></i></a>
                 @else
                 <a href="{{route('login')}}"><i class="fa fa-sign-in"></i></a>
                 @endauth

@@ -111,12 +111,13 @@ class CartController extends Controller
 
     public function processCheckout(Request $request){
         $validator = $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'email' => 'required|email',
-            'address' => 'required',
+            'alamat' => 'required',
+            'notelp' => 'required|max:12',
             'kota' => 'required',
             'kecamatan' => 'required',
-            'kodepos' => 'required',
+            'kodepos' => 'required|max:5',
         ]);
 
         $user =  Auth::user();
@@ -128,9 +129,10 @@ class CartController extends Controller
             $order->user_id = $user->id;
             $order->subtotal = $subTotal;
 
-            $order->name = $request->name;
+            $order->nama = $request->nama;
             $order->email = $request->email;
-            $order->address = $request->address;
+            $order->alamat = $request->alamat;
+            $order->notelp = $request->notelp;
             $order->kota = $request->kota;
             $order->kecamatan = $request->kecamatan;
             $order->kodepos = $request->kodepos;
@@ -152,15 +154,85 @@ class CartController extends Controller
                 $produkData->stok = $updateQty;
                 $produkData->save();
             }
-
-            session()->flash('success', 'you have successfully placed orde');
-
+            
+            session()->flash('success', 'you have successfully placed order');
             Cart::destroy();
+
+            return response()->json([
+                "message" => "order success",
+                'status' => true
+            ]);
 
 
         } else {
+            $subTotal = Cart::subtotal(2, '.', '');
 
+            $order = new Order;
+            $order->user_id = $user->id;
+            $order->subtotal = $subTotal;
+
+            $order->nama = $request->nama;
+            $order->email = $request->email;
+            $order->alamat = $request->alamat;
+            $order->notelp = $request->notelp;
+            $order->kota = $request->kota;
+            $order->kecamatan = $request->kecamatan;
+            $order->kodepos = $request->kodepos;
+            $order->payment_status = 'paid';
+            $order->save();
+
+            foreach(Cart::content() as $item){
+                $orderItem = new OrderItem;
+                $orderItem->produk_id = $item->id;
+                $orderItem->order_id = $order->id;
+                $orderItem->name = $item->name;
+                $orderItem->qty = $item->qty;
+                $orderItem->price = $item->price;
+                $orderItem->total = $item->price*$item->qty;
+                $orderItem->save();
+
+                $produkData = Produk::find($item->id);
+                $currentQty = $produkData->stok;
+                $updateQty = $currentQty-$item->qty;
+                $produkData->stok = $updateQty;
+                $produkData->save();
+            }
+            
+            
+            // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = false;
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = true;
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = true;
+
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $order->id,
+                    'gross_amount' => $subTotal,
+                ),
+                'customer_details' => array(
+                    'name' => $order->nama,
+                    'email' => $order->email,
+                    'phone' => $order->notelp,
+                ),
+            );
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            session()->flash('success', 'you have successfully placed order');
+            Cart::destroy();
+
+            return response()->json([
+                'snapToken' => $snapToken,
+            ]);
         }
     }
+
+    public function thankyou(){
+        return view('success');
+    }
+    
 
 }

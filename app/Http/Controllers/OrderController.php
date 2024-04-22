@@ -12,7 +12,7 @@ class OrderController extends Controller
 
         $orders = Order::latest('orders.created_at');
 
-        $orders = $orders->paginate(10);
+        $orders = $orders->paginate();
 
         return view('admin.listOrder', [
             'orders' => $orders
