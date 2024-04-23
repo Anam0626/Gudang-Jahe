@@ -14,6 +14,8 @@
                         <td>Status</td>
                         <td>Total</td>
                         <td>Date Purchased</td>
+                        <td>Method</td>
+                        <td>Payment Status</td>
                         <td>Details</td>
                     </tr>
                 </thead>
@@ -30,13 +32,17 @@
                                     @if ($order->status == 'pending')
                                         <span class="status pending">Pending</span>
                                     @elseif ($order->status == 'inprogress')
-                                        <span class="status inProgress">In Progress</span>
-                                    @else
+                                        <span class="status inProgress">InProgress</span>
+                                    @elseif ($order->status == 'delivered')
                                         <span class="status delivered">Delivered</span>
+                                    @else
+                                        <span class="status canceled">Canceled</span>
                                     @endif
                                 </td>
                                 <td>Rp. {{ number_format($order->subtotal) }}</td>
                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
+                                <td>{{ $order->metode }}</td>
+                                <td>{{ $order->payment_status }}</td>
                                 <td>
                                     <a href="{{route('ordersDetail',[$order->id])}}" type="button" class="btn btn-success btn-just-icon btn-sm edit-btn">
                                         <i class="fa fa-eye"></i>

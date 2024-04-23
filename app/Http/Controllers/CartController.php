@@ -122,117 +122,113 @@ class CartController extends Controller
 
         $user =  Auth::user();
 
-        if($request->paymentMethod == 'cod'){
-            $subTotal = Cart::subtotal(2, '.', '');
+        $subTotal = Cart::subtotal(2, '.', '');
 
-            $order = new Order;
-            $order->user_id = $user->id;
-            $order->subtotal = $subTotal;
+        $order = new Order;
+        $order->user_id = $user->id;
+        $order->subtotal = $subTotal;
 
-            $order->nama = $request->nama;
-            $order->email = $request->email;
-            $order->alamat = $request->alamat;
-            $order->notelp = $request->notelp;
-            $order->kota = $request->kota;
-            $order->kecamatan = $request->kecamatan;
-            $order->kodepos = $request->kodepos;
-            $order->save();
+        $order->nama = $request->nama;
+        $order->email = $request->email;
+        $order->alamat = $request->alamat;
+        $order->notelp = $request->notelp;
+        $order->kota = $request->kota;
+        $order->kecamatan = $request->kecamatan;
+        $order->kodepos = $request->kodepos;
+        $order->metode = $request->paymentMethod;
+        $order->save();
 
-            foreach(Cart::content() as $item){
-                $orderItem = new OrderItem;
-                $orderItem->produk_id = $item->id;
-                $orderItem->order_id = $order->id;
-                $orderItem->name = $item->name;
-                $orderItem->qty = $item->qty;
-                $orderItem->price = $item->price;
-                $orderItem->total = $item->price*$item->qty;
-                $orderItem->save();
+        foreach(Cart::content() as $item){
+            $orderItem = new OrderItem;
+            $orderItem->produk_id = $item->id;
+            $orderItem->order_id = $order->id;
+            $orderItem->name = $item->name;
+            $orderItem->qty = $item->qty;
+            $orderItem->price = $item->price;
+            $orderItem->total = $item->price*$item->qty;
+            $orderItem->save();
 
-                $produkData = Produk::find($item->id);
-                $currentQty = $produkData->stok;
-                $updateQty = $currentQty-$item->qty;
-                $produkData->stok = $updateQty;
-                $produkData->save();
-            }
-            
-            session()->flash('success', 'you have successfully placed order');
-            Cart::destroy();
-
-            return response()->json([
-                "message" => "order success",
-                'status' => true
-            ]);
-
-
-        } else {
-            $subTotal = Cart::subtotal(2, '.', '');
-
-            $order = new Order;
-            $order->user_id = $user->id;
-            $order->subtotal = $subTotal;
-
-            $order->nama = $request->nama;
-            $order->email = $request->email;
-            $order->alamat = $request->alamat;
-            $order->notelp = $request->notelp;
-            $order->kota = $request->kota;
-            $order->kecamatan = $request->kecamatan;
-            $order->kodepos = $request->kodepos;
-            $order->payment_status = 'paid';
-            $order->save();
-
-            foreach(Cart::content() as $item){
-                $orderItem = new OrderItem;
-                $orderItem->produk_id = $item->id;
-                $orderItem->order_id = $order->id;
-                $orderItem->name = $item->name;
-                $orderItem->qty = $item->qty;
-                $orderItem->price = $item->price;
-                $orderItem->total = $item->price*$item->qty;
-                $orderItem->save();
-
-                $produkData = Produk::find($item->id);
-                $currentQty = $produkData->stok;
-                $updateQty = $currentQty-$item->qty;
-                $produkData->stok = $updateQty;
-                $produkData->save();
-            }
-            
-            
-            // Set your Merchant Server Key
-            \Midtrans\Config::$serverKey = config('midtrans.server_key');
-            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-            \Midtrans\Config::$isProduction = false;
-            // Set sanitization on (default)
-            \Midtrans\Config::$isSanitized = true;
-            // Set 3DS transaction for credit card to true
-            \Midtrans\Config::$is3ds = true;
-
-            $params = array(
-                'transaction_details' => array(
-                    'order_id' => $order->id,
-                    'gross_amount' => $subTotal,
-                ),
-                'customer_details' => array(
-                    'name' => $order->nama,
-                    'email' => $order->email,
-                    'phone' => $order->notelp,
-                ),
-            );
-
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
-            session()->flash('success', 'you have successfully placed order');
-            Cart::destroy();
-
-            return response()->json([
-                'snapToken' => $snapToken,
-            ]);
+            $produkData = Produk::find($item->id);
+            $currentQty = $produkData->stok;
+            $updateQty = $currentQty-$item->qty;
+            $produkData->stok = $updateQty;
+            $produkData->save();
         }
+        
+        session()->flash('success', 'you have successfully placed order');
+        Cart::destroy();
+
+        return response()->json([
+            "message" => "place order success",
+            'status' => true
+        ]);
     }
 
-    public function thankyou(){
-        return view('success');
+    public function processCheckoutTransfer(Request $request){
+        $orderId = $request->order_id;
+        $order = Order::find($orderId);
+        // Pastikan pesanan ditemukan
+        if(!$order){
+            return response()->json([
+                'status' => false,
+                'message' => 'Order not found'
+            ], 404);
+        }
+    
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+        
+        $uniqueOrderId = $order->id . '_' . time();
+
+        // Menyiapkan parameter transaksi Midtrans
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $uniqueOrderId, // Menggunakan ID pesanan yang diterima
+                'gross_amount' => $order->subtotal,
+            ),
+            'customer_details' => array(
+                'name' => $order->nama,
+                'email' => $order->email,
+                'phone' => $order->notelp,
+            ),
+        );
+
+        // Mendapatkan Snap Token dengan parameter yang sesuai
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return response()->json([
+            'snapToken' => $snapToken,
+        ]);
     }
+
+    public function updatePaymentStatus(Request $request){
+        $orderId = $request->order_id;
+        $order = Order::find($orderId);
+    
+        if(!$order){
+            return response()->json([
+                'status' => false,
+                'message' => 'Order not found'
+            ], 404);
+        }
+    
+        // Ubah status pembayaran menjadi 'paid'
+        $order->payment_status = 'paid';
+        $order->save();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Payment status updated successfully'
+        ]);
+    }
+    
+    
     
 
 }

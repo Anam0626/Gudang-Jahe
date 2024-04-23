@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
 
@@ -40,5 +41,14 @@ class OrderController extends Controller
         session()->flash('status', 'status changed successfully');
 
         return redirect()->back();
+    }
+
+    public function orders(){
+        $user = Auth::user();
+
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
+
+        $data['orders'] = $orders;
+        return view('my_order', $data);
     }
 }

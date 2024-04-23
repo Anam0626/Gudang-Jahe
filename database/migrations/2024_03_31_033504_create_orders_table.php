@@ -24,8 +24,9 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('kodepos');
 
-            $table->enum('status', ['pending', 'delivered', 'inprogress'])->default('pending');
+            $table->enum('status', ['pending', 'delivered', 'inprogress', 'canceled'])->default('pending');
             $table->timestamp('shipped_date')->nullable();
+            $table->enum('metode', ['cod', 'transfer']);
             $table->enum('payment_status', ['paid', 'not paid'])->default('not paid');;
 
             $table->timestamps();

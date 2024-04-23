@@ -370,6 +370,89 @@ button:focus {
     background-color: #d7bd94;
 }
 
+.myorder {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+}
+
+.myorder .container {
+    position: relative;
+    display: grid;
+    padding: 20px;
+}
+
+.myorder table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #d7bd94;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+.myorder table thead td {
+    font-weight: 600;
+}
+.myorder table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.myorder table tr:last-child {
+    border-bottom: none;
+}
+.myorder table tbody tr:hover {
+    background: black;
+    color: white;
+}
+.myorder table tr td {
+    padding: 10px;
+}
+.myorder table tr td:last-child {
+    text-align: end;
+}
+.myorder table tr td:nth-child(2) {
+    text-align: end;
+}
+.myorder table tr td:nth-child(3) {
+    text-align: center;
+}
+
+.status.pending {
+    padding: 2px 4px;
+    background: #e9b10a;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.canceled {
+    padding: 2px 4px;
+    background: #f00;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.inProgress {
+    padding: 2px 4px;
+    background: #1795ce;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.delivered {
+    padding: 2px 4px;
+    background: #8de02c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 footer h6 {
     color: white;
     padding-bottom: 20px;
