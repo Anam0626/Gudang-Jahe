@@ -99,66 +99,23 @@
 @include('layout.footer')
 
 
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{config('midtrans.client_key')}}"></script>
 <script type="text/javascript">
     $("#orderForm").submit(function(event){
         event.preventDefault();
-        
-        // Mendapatkan nilai dari radio button yang dipilih
-        var paymentMethod = $("input[name='paymentMethod']:checked").val();
-
-        // Memeriksa nilai paymentMethod
-        if(paymentMethod === "cod") {
-          $.ajax({
-            url: '{{ route("processCheckout") }}',
-            type: 'post',
-            data: $(this).serializeArray(),
-            dataType: 'json',
-            success: function(response){
-              if (response.status == true) {
-                // Arahkan pengguna ke halaman keranjang hanya jika permintaan berhasil
-                window.location.href= '{{route("thankyou")}}';
-              } else {
-                  alert(response.message);
-              }
-            },
-          });
-        } else if(paymentMethod === "transfer") {
-            $.ajax({
-              url: '{{ route("processCheckout") }}',
-              type: 'post',
-              data: $(this).serializeArray(),
-              dataType: 'json',
-              success: function(response) { // response didefinisikan di sini
-                  var snapToken = response.snapToken;
-                  if (snapToken) {
-                      window.snap.pay(snapToken, {
-                        onSuccess: function(result){
-                          /* You may add your own implementation here */
-                          alert("payment success!"); 
-                          window.location.href= '{{route("cart")}}';
-                        },
-                        onPending: function(result){
-                          /* You may add your own implementation here */
-                          alert("wating your payment!"); console.log(result);
-                        },
-                        onError: function(result){
-                          /* You may add your own implementation here */
-                          alert("payment failed!"); console.log(result);
-                        },
-                        onClose: function(){
-                          /* You may add your own implementation here */
-                          alert('you closed the popup without finishing the payment');
-                        }
-                      });
-                  } else {
-                      alert("Snap token not found!");
-                  }
-              },
-          });
-        } else {
-            alert("Silakan pilih metode pembayaran terlebih dahulu.");
-        }
+        $.ajax({
+          url: '{{ route("processCheckout") }}',
+          type: 'post',
+          data: $(this).serializeArray(),
+          dataType: 'json',
+          success: function(response){
+            if (response.status == true) {
+              // Arahkan pengguna ke halaman keranjang hanya jika permintaan berhasil
+              window.location.href= '{{route("myorder")}}';
+            } else {
+                alert(response.message);
+            }
+          },
+        });
     })
 </script>
 

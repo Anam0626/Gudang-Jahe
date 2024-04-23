@@ -41,6 +41,7 @@
             @endif
             <div class="icon d-flex gap-5">
                 <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
+                <a href="{{route('myorder')}}"><i class="fa fa-shopping-bag"></i></a>
                 @auth
                 <a href="{{route('logout')}}"><i class="fa fa-user"></i></a>
                 @else

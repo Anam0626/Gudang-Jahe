@@ -26,17 +26,18 @@
 
 
                                             <div class="col-sm-4 invoice-col">
-                                                {{-- <b>Invoice #007612</b><br> --}}
                                                 <br>
                                                 <b>Order ID:</b> {{ $order->id }}<br>
                                                 <b>Total:</b> Rp. {{ number_format($order->subtotal) }}<br>
                                                 <b>Status:</b>
                                                 @if ($order->status == 'pending')
                                                     <span class="text-warning">{{ $order->status }}</span>
+                                                @elseif ($order->status == 'inprogress')
+                                                    <span class="text-primary">{{ $order->status }}</span>
                                                 @elseif ($order->status == 'delivered')
                                                     <span class="text-success">{{ $order->status }}</span>
                                                 @else
-                                                    <span class="text-primary">{{ $order->status }}</span>
+                                                    <span class="text-danger">{{ $order->status }}</span>
                                                 @endif
                                                 <br>
                                             </div>
@@ -79,8 +80,9 @@
                                             <div class="mb-3">
                                                 <select name="status" id="status" class="form-control">
                                                     <option value="pending" {{ ($order->status == 'pending') ? 'selected' : '' }}>Pending</option>
-                                                    <option value="delivered" {{ ($order->status == 'delivered') ? 'selected' : '' }}>Delivered</option>
                                                     <option value="inprogress" {{ ($order->status == 'inprogress') ? 'selected' : '' }}>inprogress</option>
+                                                    <option value="delivered" {{ ($order->status == 'delivered') ? 'selected' : '' }}>Delivered</option>
+                                                    <option value="canceled" {{ ($order->status == 'canceled') ? 'selected' : '' }}>canceled</option>
                                                     {{-- <option value="">Cancelled</option> --}}
                                                 </select>
                                             </div>

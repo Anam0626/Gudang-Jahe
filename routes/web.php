@@ -39,6 +39,7 @@ Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('p
 Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middleware('auth','admin');
 Route::get('/orders/{id}', [OrderController::class, 'detail'])->name('ordersDetail')->middleware('auth','admin');
 Route::post('/orders/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('changeOrderStatus')->middleware('auth','admin');
+Route::get('/myorder', [OrderController::class, 'orders'])->name('myorder')->middleware('auth','verified');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart')->middleware('auth', 'verified');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart')->middleware('auth', 'verified');
@@ -47,6 +48,9 @@ Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('delete
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth', 'verified');
 Route::get('/thankyou', [CartController::class, 'thankyou'])->name('thankyou')->middleware('auth', 'verified');
 Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('processCheckout')->middleware('auth', 'verified');
+Route::post('/process-checkout-transfer', [CartController::class, 'processCheckoutTransfer'])->name('processCheckoutTransfer')->middleware('auth', 'verified');
+Route::post('/update-payment-status', [CartController::class, 'updatePaymentStatus'])->name('updatePaymentStatus');
+
 
 Route::get('/admin', function () {
     return view('admin.admin');
@@ -72,4 +76,6 @@ Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verifverify
 
 
 Route::get('/{id}', [ProdukController::class, 'detail_produk'])->name('product');
+
+
 
