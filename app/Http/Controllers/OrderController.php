@@ -43,6 +43,18 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
+    public function changePayment(Request $request, $orderId){
+        $order = Order::find($orderId);
+        $order->payment_status = $request->paymentStatus;
+        $order->save();
+
+        $message = 'payment changed successfully';
+
+        session()->flash('payment', 'payment changed successfully');
+
+        return redirect()->back();
+    }
+
     public function orders(){
         $user = Auth::user();
 

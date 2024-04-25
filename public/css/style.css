@@ -526,3 +526,11 @@ body {
     font-size: 14px;
     font-weight: 500;
 }
+
+.detailorder a{
+    color: white;
+}
+
+.detailorder .card{
+    background: var(--ginger);
+}

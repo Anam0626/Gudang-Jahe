@@ -52,18 +52,19 @@
         </div>
         <a href="{{ route('googlelogin') }}"><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
     </div>
-
-    <div class="container-reset">
-        <h2 class="title">Kirim Email Reset password</h2>
-        <form action="{{ route('password.email') }}" method="post">
-            @csrf
-            <input type="text" placeholder="Email" name="email"><br>
-            <button class="resetbtn" type="submit">Kirim</button><br>
-        </form>
-        <div class="link">
-            <a href="cancel">Cancel</a>
+    <div class="container">
+        <div class="reset">
+            <h4 class="title text-center">Kirim Email</h4>
+            <form action="{{ route('password.email') }}" method="post">
+                @csrf
+                <div class="form-field d-flex align-items-center">
+                    <input type="text" placeholder="Email" name="email">
+                </div>
+                <button class="resetbtn" type="submit">Kirim</button>
+            </form>
         </div>
     </div>
+
 </body>
 <script>
      $(document).ready(function() {
@@ -71,6 +72,7 @@
 
         $('a[href="reset"]').click(function(e) {
         e.preventDefault();
+        $('h1').hide();
         $('.wrapper').hide();
         $('.container-reset').show();
         });

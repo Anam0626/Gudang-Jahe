@@ -43,7 +43,7 @@
                 <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
                 <a href="{{route('myorder')}}"><i class="fa fa-shopping-bag"></i></a>
                 @auth
-                <a href="{{route('logout')}}"><i class="fa fa-user"></i></a>
+                <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a>
                 @else
                 <a href="{{route('login')}}"><i class="fa fa-sign-in"></i></a>
                 @endauth
