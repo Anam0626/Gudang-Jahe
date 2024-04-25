@@ -36,14 +36,8 @@
                                             @method('PUT')
                                             @csrf
                                                 <div class="mb-3">
-                                                    <label for="nama" class="form-label">Nama</label>
-                                                    <input type="text" class="form-control" name="name" value="{{ old('name') ?? $user->name}}">
-                                                </div>
-                                                <div class="mb-3">
                                                     <label for="email" class="form-label">Email</label>
                                                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="{{ old('email') ?? $user->email}}">
-                                                </div>
-
                                                 </div>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -68,8 +62,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('user.destroy',
-                                                ['user'=>$user->id]) }}" method="POST">
+                                            <form action="{{ route('user.destroy', ['user'=>$user->id]) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-just-icon btn-sm" data-bs-toggle="modal" data-bs-target="#delete">

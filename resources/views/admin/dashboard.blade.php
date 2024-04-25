@@ -79,8 +79,10 @@
                                                 <span class="status pending">Pending</span>
                                             @elseif ($order->status == 'inprogress')
                                                 <span class="status inProgress">In Progress</span>
-                                            @else
+                                            @elseif ($order->status == 'delivered')
                                                 <span class="status delivered">Delivered</span>
+                                            @else
+                                                <span class="status canceled">Canceled</span>
                                             @endif
                                         </td>
                                     </tr>

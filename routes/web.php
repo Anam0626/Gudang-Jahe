@@ -39,6 +39,7 @@ Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('p
 Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middleware('auth','admin');
 Route::get('/orders/{id}', [OrderController::class, 'detail'])->name('ordersDetail')->middleware('auth','admin');
 Route::post('/orders/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('changeOrderStatus')->middleware('auth','admin');
+Route::post('/orders/change-payment/{id}', [OrderController::class, 'changePayment'])->name('changePayment')->middleware('auth','admin');
 Route::get('/myorder', [OrderController::class, 'orders'])->name('myorder')->middleware('auth','verified');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart')->middleware('auth', 'verified');

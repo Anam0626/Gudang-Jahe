@@ -18,7 +18,9 @@ class DashboardController extends Controller
         $totalProduks = Produk::count();
         $totalRevenue = 0;
         foreach ($orders as $order) {
-            $totalRevenue += $order->subtotal;
+            if ($order->payment_status === 'paid' || $order->status === 'delivered') {
+                $totalRevenue += $order->subtotal;
+            }
         }
         return view('admin.dashboard', [
             'totalUsers' => $totalUsers,

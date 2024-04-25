@@ -181,6 +181,49 @@ body {
     color: black;
 }
 
+.reset {
+    max-width: 350px;
+    min-height: 200px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #d7bd94;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #917d5c, -13px -13px 20px #c3ac87;
+}
+
+.reset .form-field input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+}
+
+.reset .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #917d5c;
+}
+
+.reset .resetbtn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #d7bd94;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #917d5c;
+    letter-spacing: 1.3px;
+}
+
+.reset .resetbtn:hover {
+    background-color: #d4b684;
+}
+
+
+
 @media (max-width: 380px) {
     .wrapper-register {
         margin: 30px 20px;

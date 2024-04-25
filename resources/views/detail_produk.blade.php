@@ -9,6 +9,7 @@
             <div class="col">
                 <h1 class="fw-bold display-1">{{$product->nama}}</h1>
                 <h4 class="text-white mt-3">Rp. {{$product->harga}}</h4>
+                <p class="text-white">Stok: {{ $product->stok }} Kg</p>
                 <p class="text-white mt-5">{{$product->deskripsi}}</p>
                 <a href="javascript:void(0)" onclick="addToCart({{ $product->id }})" class="btn btn-dark px-5" type="button">
                     Add To Cart
