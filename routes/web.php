@@ -41,6 +41,7 @@ Route::get('/orders/{id}', [OrderController::class, 'detail'])->name('ordersDeta
 Route::post('/orders/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('changeOrderStatus')->middleware('auth','admin');
 Route::post('/orders/change-payment/{id}', [OrderController::class, 'changePayment'])->name('changePayment')->middleware('auth','admin');
 Route::get('/myorder', [OrderController::class, 'orders'])->name('myorder')->middleware('auth','verified');
+Route::get('/myorder_detail/{id}', [OrderController::class, 'myorder_detail'])->name('myorder_detail')->middleware('auth','verified');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart')->middleware('auth', 'verified');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart')->middleware('auth', 'verified');

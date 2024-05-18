@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="{{ asset('js/jquery.js') }}"></script>
 
 </head>
@@ -21,35 +22,37 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/"><img src="{{asset('images/v21_13.png')}}" width="150" height="70" alt=""></a>
-            @if (Route::currentRouteName() == '')
-                <div class="collapse navbar-collapse justify-content-center flex-grow-1" id="navbarTogglerDemo01">
-                    <ul class="navbar-nav">
-                        <li class="nav-item mx-5">
-                        <a class="nav-link fw-bolder" aria-current="page" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                        <a class="nav-link fw-bolder" aria-current="page" href="#about">About</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                        <a class="nav-link fw-bolder" aria-current="page" href="#product">Product</a>
-                        </li>
-                        <li class="nav-item mx-5">
-                        <a class="nav-link fw-bolder" aria-current="page" href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            @endif
-            <div class="icon d-flex gap-5">
-                <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
-                <a href="{{route('myorder')}}"><i class="fa fa-shopping-bag"></i></a>
-                @auth
-                <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a>
-                @else
-                <a href="{{route('login')}}"><i class="fa fa-sign-in"></i></a>
-                @endauth
-            </div>
-            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" style="color: #d7bd94" aria-hidden="true"></i>
             </button>
+    
+            <div class="collapse navbar-collapse justify-content-center text-center flex-grow-1" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mx-auto"> <!-- Menambahkan class mx-auto -->
+                    <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#about">About</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#product">Product</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link fw-bolder" aria-current="page" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="icon d-flex gap-5">
+                    <a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a>
+                    <a href="{{route('myorder')}}"><i class="fa fa-shopping-bag"></i></a>
+                    @auth
+                        <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a>
+                    @else
+                        <a href="{{route('login')}}"><i class="fa fa-sign-in"></i></a>
+                    @endauth
+                </div>
+    
+            </div>
         </div>
     </nav>
+    

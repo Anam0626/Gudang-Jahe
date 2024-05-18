@@ -496,6 +496,40 @@ button:focus {
     font-weight: 500;
 }
 
+.my_order_detail .card{
+    background-color: #d7bd94;
+}
+
+.my_order_detail .table thead th {
+    background-color: #e4d1b3; /* Warna latar belakang */
+    color: #333; /* Warna teks */
+}
+
+/* Mengatur warna latar belakang dan teks pada baris tabel */
+.my_order_detail .table tbody td {
+    background-color: #e4d1b3; /* Warna latar belakang */
+    color: #333; /* Warna teks */
+}
+.my_order_detail .table tbody th {
+    background-color: #e4d1b3; /* Warna latar belakang */
+    color: #333; /* Warna teks */
+}
+
+.my_order_detail .btn:hover {
+    color: white;
+}
+
+.gallery{
+    margin-top: 100px;
+}
+
+.gallery img.zoom {
+    width: 100%;
+    height: 200px;
+    border-radius:5px;
+    object-fit:cover;
+}
+
 footer h6 {
     color: white;
     padding-bottom: 20px;
@@ -508,4 +542,17 @@ footer p {
 footer .sosmed img {
     width: 20px;
     margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .icon {
+        display: flex;
+        justify-content: center; /* Menengahkan ikon secara horizontal */
+        align-items: center; 
+        margin-top: 1rem;
+    }
+
+    .icon a {
+        margin: 0 0.5rem; /* Menambahkan margin di sekitar ikon */
+    }
 }

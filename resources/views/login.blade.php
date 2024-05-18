@@ -9,12 +9,16 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="{{ asset('js/jquery.js') }}"></script>
 </head>
 <body style="background-color: black">
     <h1 class="text-center" style="color: #d7bd94; margin-top: 50px">Login</h1>
-    <div class="wrapper">
+    <div class="wrapper" data-aos="flip-right"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
         @if(session()->has('success'))
             <div class="alert alert-success alert-dismissable fade show" role="alert">
                 {{ session('success') }}
@@ -64,17 +68,21 @@
             </form>
         </div>
     </div>
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 <script>
-     $(document).ready(function() {
-        $('.container-reset').hide();
+    $(document).ready(function() {
+        $('.container').hide();
 
         $('a[href="reset"]').click(function(e) {
-        e.preventDefault();
-        $('h1').hide();
-        $('.wrapper').hide();
-        $('.container-reset').show();
+            e.preventDefault();
+            $('h1').hide();
+            $('.wrapper').hide();
+            $('.container').show();
         });
-    })
+    });
 </script>
+

@@ -10,7 +10,7 @@
                     <td>Date Purchased</td>
                     <td>Status</td>
                     <td>Total</td>
-                    <td>Payment</td>
+                    <td>Action</td>
                 </tr>
             </thead>
 
@@ -33,21 +33,9 @@
                             </td>
                             <td>Rp. {{ number_format($order->subtotal) }}</td>
                             <td>
-                                @if ($order->metode == 'transfer')
-                                    @if ($order->payment_status == 'not paid')
-                                        @if ($order->status == 'pending')
-                                            <button type="button" class="btn btn-success btn-just-icon btn-sm edit-btn" data-orderid="{{ $order->id }}">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                        @else
-                                        Canceled
-                                        @endif
-                                    @else
-                                    paid
-                                    @endif
-                                @else
-                                cod
-                                @endif
+                                <a href="{{route('myorder_detail',[$order->id])}}" class="btn btn-just-icon btn-sm" style="background-color: #e4d1b3">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -66,73 +54,5 @@
     </div>
 </section>
 
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{config('midtrans.client_key')}}"></script>
-<script type="text/javascript">
-   $(document).ready(function() {
-    $(".edit-btn").click(function(event) {
-        event.preventDefault();
-        var orderId = $(this).data('orderid'); // Ambil ID pesanan
-        // Mendapatkan CSRF token dari meta tag
-        var token = $('meta[name="csrf-token"]').attr('content');
 
-        $.ajax({
-            url: '{{ route("processCheckoutTransfer") }}',
-            type: 'post',
-            data: {
-                _token: token,
-                order_id: orderId
-            },
-            dataType: 'json',
-            success: function(response) {
-                var snapToken = response.snapToken;
-                if (snapToken) {
-                    window.snap.pay(snapToken, {
-                        onSuccess: function(result) {
-                            alert("payment success!");
-                            // Mengirim permintaan untuk memperbarui status pembayaran
-                            $.ajax({
-                                url: '{{ route("updatePaymentStatus") }}',
-                                type: 'post',
-                                data: {
-                                    _token: token,
-                                    order_id: orderId // Menggunakan ID pesanan yang sesuai
-                                },
-                                dataType: 'json',
-                                success: function(response) {
-                                    // Handle response jika diperlukan
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(xhr.responseText);
-                                    alert("An error occurred while updating payment status.");
-                                }
-                            });
-                            window.location.href = '{{route("myorder")}}';
-                        },
-                        onPending: function(result) {
-                            alert("waiting your payment!");
-                            window.location.href = '{{route("myorder")}}';
-                        },
-                        onError: function(result) {
-                            alert("payment failed!");
-                            console.log(result);
-                        },
-                        onClose: function() {
-                            alert('you closed the popup without finishing the payment');
-                            window.location.href = '{{route("myorder")}}';
-                        }
-                    });
-                } else {
-                    alert("Snap token not found!");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-                alert("An error occurred while processing your request. Please try again later.");
-            }
-        });
-    });
-});
-
-
-</script>
 

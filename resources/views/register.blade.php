@@ -9,20 +9,19 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 </head>
 <body style="background-color: black">
     <h1 class="text-center" style="color: #d7bd94; margin-top: 50px">Register</h1>
-    <div class="wrapper-register">
+    <div class="wrapper-register" data-aos="flip-left"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
         <div class="logo">
             <img src="{{asset('images/mockup-graphics-1q4IIdEnIWA-unsplash-removebg-preview.png')}}" alt="">
         </div>
         <form class="p-3" action="{{url('check_register')}}" method="POST">
         @csrf
-            {{-- <div class="form-field d-flex align-items-center">
-                <span class="fa fa-user"></span>
-                <input type="text" name="name" id="name" placeholder="Name">
-            </div> --}}
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-user"></span>
                 <input type="email" name="email" id="email" placeholder="Email">
@@ -31,14 +30,6 @@
                 <span class="fa fa-key"></span>
                 <input type="password" name="password" id="password" placeholder="Password">
             </div>
-            {{-- <div class="form-field d-flex align-items-center">
-                <span class="fa fa-map-marker"></span>
-                <input type="alamat" name="alamat" id="alamat" placeholder="Alamat">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fa fa-phone"></span>
-                <input name="telp" id="telp" placeholder="No Telepon">
-            </div> --}}
             <button class="btn mt-3 text-black">Register</button>
         </form>
         <div class="text-center fs-6">
@@ -51,4 +42,8 @@
         </div>
         <a href="{{route('googlelogin')}}"><img src="{{asset('images/search.png')}}" style="width: 15px;" class="col-lg-12 mx-auto d-flex align-items-center justify-content-center"></a>
     </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>

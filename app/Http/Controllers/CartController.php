@@ -193,7 +193,7 @@ class CartController extends Controller
                 'gross_amount' => $order->subtotal,
             ),
             'customer_details' => array(
-                'name' => $order->nama,
+                'first_name' => $order->nama,
                 'email' => $order->email,
                 'phone' => $order->notelp,
             ),

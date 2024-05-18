@@ -29,6 +29,15 @@ class OrderController extends Controller
             'orderItems' => $orderItems
         ]);
     }
+    public function myorder_detail($orderId){
+
+        $order = Order::where('id', $orderId)->first();
+        $orderItems = OrderItem::where('order_id', $orderId)->get();
+        return view('my_order_detail',[
+            'order' => $order,
+            'orderItems' => $orderItems
+        ]);
+    }
 
     public function changeOrderStatus(Request $request, $orderId){
         $order = Order::find($orderId);
