@@ -16,24 +16,25 @@ class LoginController extends Controller
     }
 
      public function authenticate(Request $request): RedirectResponse
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
 
-        if (Auth::Attempt($credentials)) {
-            $request->session()->regenerate();
-            $user = Auth::user();
-            if ($user->role == 'admin') {
-                return redirect('admin');
-            } else {
-                return redirect()->intended('/');
-            }
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        $user = Auth::user();
+        if ($user->role == 'admin') {
+            return redirect('dashboard');
+        } else {
+            return redirect()->intended('/');
         }
-
-        return back()->with('loginError', 'Login Failed');
     }
+
+    return back()->with('loginError', 'Login Failed');
+}
+
 
     public function logout(Request $request): RedirectResponse
     {

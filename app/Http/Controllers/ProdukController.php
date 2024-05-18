@@ -39,7 +39,8 @@ class ProdukController extends Controller
         if ($request->hasFile('berkas')) {
             $extFile = $request->berkas->getClientOriginalExtension();
             $namaFile = 'Gambar'.$request->nama.'.'.$extFile;
-            $path = $request->berkas->storeAs('public', $namaFile);
+            // $path = $request->berkas->storeAs('public', $namaFile);
+            $path = Storage::putFileAs('public', $request->berkas, $namaFile);
         } else {
             $namaFile = 'user.png';
         }

@@ -2,8 +2,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-6">
-                <img src="{{asset('images/v21_13.png')}}" style="margin-top: -15px" alt="">
-                <h6 style="margin: 10px 10px">Gudang Jahe</h6>
+                <img src="{{asset('images/v21_13.png')}}" alt="">
+                <h6 class="m-2">Gudang Jahe</h6>
             </div>
             <div class="col-sm-2">
                 <h6>Company</h6>
@@ -25,6 +25,10 @@
         </div>
     </div>
 </footer>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 </body>
 </html>
 
